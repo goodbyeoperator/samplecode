@@ -1,0 +1,136 @@
+void CSprite::CheckWalkHorizontal() //handles camera transition when character moves into different pane left or right
+{
+
+	if (hold)
+	{
+		setX((SW*side_to_side)+SW+2);
+
+	}
+
+	if (hold2)
+	{
+		setX(((SW*side_to_side)-sprite_rect.w));
+	}
+		
+
+if ((sprite_rect.h == mainCharHeight && (getX() == ((SW*side_to_side)+(SW-2)))) || (hold && !hold2))
+{
+	hold = true;
+	//if ((sprite_rect.h == mainCharHeight && ((getX()*LRCheck)/(SW*side_to_side) > 0)))	//((SW*side_to_side)-(sprite_rect.w-2))/SW)))
+		//{
+			//std::cout << "conditions met for right and x is " << getX() << std::endl;
+
+				if (*CameraX > ((-SW*side_to_side)-SW)) // handles going right of screen
+				{
+			*CameraX -= 2.0;
+			
+			//std::cout <<  "move screen by two for right" << std::endl;
+				
+			
+				if (*CameraX == (-SW*side_to_side)-SW)
+					{
+						
+						setX((SW*side_to_side)+SW+4);
+						side_to_side++;
+						hold = false;
+						std::cout << "Side to side incremented for right" << std::endl;
+		 			}
+				}
+}
+
+
+
+if ((sprite_rect.h == mainCharHeight && getX() == ((SW*side_to_side)-(sprite_rect.w/2*2)+2))|| (hold2 && !hold))
+
+{
+
+	hold2 = true;
+	//std::cout << "passed left test" << std::endl;
+	//side_to_side --;
+		if (*CameraX < -((SW*side_to_side)-SW)) // handles going to left of screen
+			{
+			*CameraX += 2.0;
+			//std::cout << "moved screen by 2 for left" << std::endl;
+			
+			
+				if (*CameraX == -((SW*side_to_side)-SW))
+				{
+					
+				setX(((SW*side_to_side)-sprite_rect.w));
+				//std::cout << "set to the supposed spot" << std::endl;
+				side_to_side--;
+				hold2 = false;
+				}
+		}
+
+}
+
+
+}
+
+void CSprite::CheckWalkVertical() //handles camera transition when character moves into different pane left or right
+{
+
+	if (hold3)
+	{
+		setY((SH*up_and_down)+SH+2);
+
+	}
+
+	if (hold4)
+	{
+		setY(((SH*up_and_down)-sprite_rect.h));
+	}
+		
+
+if ((sprite_rect.h == mainCharHeight && (getY() == ((SH*up_and_down)+(SH-2)))) || (hold3 && !hold4))
+{
+	hold3 = true;
+	//if ((sprite_rect.h == mainCharHeight && ((getY()*LRCheck)/(SH*up_and_down) > 0)))	//((SH*up_and_down)-(sprite_rect.h-2))/SH)))
+		//{
+			//std::cout << "conditions met for right and Y is " << getY() << std::endl;
+
+				if (*CameraY > ((-SH*up_and_down)-SH)) // handles going right of screen
+				{
+			*CameraY -= 2.0;
+			
+		//	std::cout <<  "move screen by two for right" << std::endl;
+				
+			
+				if (*CameraY == (-SH*up_and_down)-SH)
+					{
+						
+						setY((SH*up_and_down)+SH+4);
+						up_and_down++;
+						hold3 = false;
+						//std::cout << "Side to side incremented for right" << std::endl;
+		 			}
+				}
+}
+
+
+
+if ((sprite_rect.h == mainCharHeight && getY() == ((SH*up_and_down)-(sprite_rect.h/2*2)+2))|| (hold4 && !hold3))
+
+{
+
+	hold4 = true;
+	//std::cout << "passed left test" << std::endl;
+	//up_and_down --;
+		if (*CameraY < -((SH*up_and_down)-SH)) // handles going to left of screen
+			{
+			*CameraY += 2.0;
+			//std::cout << "moved screen by 2 for left" << std::endl;
+			
+			
+				if (*CameraY == -((SH*up_and_down)-SH))
+				{
+					
+				setY(((SH*up_and_down)-sprite_rect.h));
+				//std::cout << "set to the supposed spot" << std::endl;
+				up_and_down--;
+				hold4 = false;
+				}
+		}
+
+}
